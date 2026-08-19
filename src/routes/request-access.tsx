@@ -12,9 +12,8 @@ import { getAnalytics } from "@/lib/analytics";
 import { getProductApi, type AccessRequest } from "@/lib/product-api";
 
 export const Route = createFileRoute("/request-access")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    plan: typeof search['plan'] === "string" ? (search['plan'] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { plan?: string } =>
+    typeof search['plan'] === "string" ? { plan: search['plan'] } : {},
   head: () => ({
     meta: [
       { title: "Request a RouteLeak pilot analysis" },

@@ -95,10 +95,19 @@ export function createAnalytics(provider: AnalyticsProvider): Analytics {
   return {
     provider: provider.name,
     track(event, props = {}) {
-      provider.track(event, sanitize({ product: "routeleak", ...props }));
+      // Instrumentation must never break the operator's workflow.
+      try {
+        provider.track(event, sanitize({ product: "routeleak", ...props }));
+      } catch (error) {
+        console.warn("[analytics] track failed", error);
+      }
     },
     identify(userId, props = {}) {
-      provider.identify(userId, sanitize({ product: "routeleak", ...props }));
+      try {
+        provider.identify(userId, sanitize({ product: "routeleak", ...props }));
+      } catch (error) {
+        console.warn("[analytics] identify failed", error);
+      }
     },
   };
 }

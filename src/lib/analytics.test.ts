@@ -70,11 +70,11 @@ describe("analytics", () => {
     analytics.track("core_workflow_completed", {
       runId: "run-1",
       customerName: "Northside Facilities",
-    } as never);
-    analytics.identify("u1", { accountId: "acct-1", email: "x@y.z" } as never);
+    });
+    analytics.identify("u1", { accountId: "acct-1", email: "x@y.z" });
 
     expect(events[0]!.props).not.toHaveProperty("customerName");
-    expect(events[0]!.props.runId).toBe("run-1");
+    expect(events[0]!.props["runId"]).toBe("run-1");
     expect(identified[0]!.props).not.toHaveProperty("email");
   });
 

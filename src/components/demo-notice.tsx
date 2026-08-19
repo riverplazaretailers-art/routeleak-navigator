@@ -20,7 +20,7 @@ export function DemoNotice({ compact = false }: { compact?: boolean }) {
         <span className="font-semibold">Sample account — demo data.</span>{" "}
         {compact
           ? "Figures are illustrative, not customer results."
-          : "Figures are fabricated to illustrate the workflow. They are not customer results or proof of recovery. Connect the RouteLeak backend with VITE_API_BASE_URL to work with real data."}
+          : "Figures are fabricated to illustrate the workflow. They are not customer results or proof of recovery. Real analysis runs in the secure RouteLeak workspace."}
       </p>
     </div>
   );

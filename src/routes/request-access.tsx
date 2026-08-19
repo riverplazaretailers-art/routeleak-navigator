@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
+import { ModeNotice, SignInCta, StartCta } from "@/components/launch-cta";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { getLaunchConfig } from "@/lib/launch-config";
 import { ErrorState, SuccessNote } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -74,7 +76,15 @@ function RequestAccessPage() {
           {plan ? ` Requested plan: ${plan}.` : ""}
         </p>
 
-        {mutation.isSuccess ? (
+        {!getLaunchConfig().capabilities.backendCatalog ? (
+          <div className="mt-6 space-y-4">
+            <ModeNotice />
+            <div className="flex flex-wrap gap-2">
+              <StartCta label="Start a pilot request in the secure workspace" />
+              <SignInCta variant="outline" />
+            </div>
+          </div>
+        ) : mutation.isSuccess ? (
           <div className="mt-6 space-y-4">
             <SuccessNote>
               <p className="font-semibold">Request received.</p>
@@ -87,9 +97,7 @@ function RequestAccessPage() {
               <Button asChild variant="outline">
                 <Link to="/how-it-works">See the workflow</Link>
               </Button>
-              <Button asChild variant="ghost">
-                <Link to="/sign-in">Open the sample account</Link>
-              </Button>
+              <SignInCta variant="ghost" />
             </div>
           </div>
         ) : (

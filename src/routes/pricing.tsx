@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Check } from "lucide-react";
 
+import { ModeNotice, StartCta } from "@/components/launch-cta";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { getLaunchConfig } from "@/lib/launch-config";
 import { ErrorState, LoadingRows } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { createBilling, createManualBillingProvider } from "@/lib/billing";
@@ -32,7 +34,12 @@ export const Route = createFileRoute("/pricing")({
 
 function PricingPage() {
   const billing = createBilling(getProductApi(), createManualBillingProvider());
-  const query = useQuery({ queryKey: ["plans"], queryFn: () => billing.listPlans() });
+  const { capabilities } = getLaunchConfig();
+  const query = useQuery({
+    queryKey: ["plans"],
+    queryFn: () => billing.listPlans(),
+    enabled: capabilities.backendCatalog,
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -49,7 +56,25 @@ function PricingPage() {
         </p>
 
         <div className="mt-8">
-          {query.isPending ? (
+          {!capabilities.backendCatalog ? (
+            <div className="space-y-4">
+              <ModeNotice />
+              <div className="panel p-5">
+                <h2 className="text-base font-semibold">Pilot analysis</h2>
+                <p className="num mt-3 text-lg font-semibold">Quoted per account</p>
+                <p className="text-xs text-muted-foreground">
+                  Fixed scope, one closed period
+                </p>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  Plan copy is published by the RouteLeak backend. No binding price is
+                  invented here.
+                </p>
+                <div className="mt-5">
+                  <StartCta />
+                </div>
+              </div>
+            </div>
+          ) : query.isPending ? (
             <LoadingRows rows={2} label="Loading plans" />
           ) : query.isError ? (
             <ErrorState error={query.error} onRetry={() => query.refetch()} />
@@ -82,11 +107,11 @@ function PricingPage() {
                     ))}
                   </ul>
                   <div className="mt-5">
-                    <Button asChild variant={plan.highlighted ? "default" : "outline"}>
-                      <Link to="/request-access" search={{ plan: plan.id }}>
-                        {plan.ctaLabel}
-                      </Link>
-                    </Button>
+                    <StartCta
+                      label={plan.ctaLabel}
+                      planId={plan.id}
+                      variant={plan.highlighted ? "default" : "outline"}
+                    />
                   </div>
                 </div>
               ))}

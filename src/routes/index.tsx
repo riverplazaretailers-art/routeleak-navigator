@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, FileSpreadsheet, ListChecks, Search } from "lucide-react";
+import { FileSpreadsheet, ListChecks, Search } from "lucide-react";
 
 import { SignInCta, ModeNotice, StartCta } from "@/components/launch-cta";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
@@ -97,6 +97,7 @@ function Landing() {
             </p>
           </div>
 
+          {capabilities.liveAnalysis ? null : (
           <div className="panel self-start">
             <div className="flex items-center justify-between border-b border-border px-4 py-2">
               <span className="label-caps">Illustrative exception queue</span>
@@ -137,6 +138,7 @@ function Landing() {
               Illustrative figures for demonstration. Not customer results.
             </p>
           </div>
+          )}
         </div>
       </section>
 

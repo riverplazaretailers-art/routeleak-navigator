@@ -62,7 +62,11 @@ describe("launch mode adapter selection", () => {
 
   it("issues v1 calls only when the full contract is configured", async () => {
     const fetchSpy = vi.fn(
-      async () => new Response(JSON.stringify([]), { status: 200 }),
+      async (url: unknown, _init?: unknown) => {
+        void url;
+        void _init;
+        return new Response(JSON.stringify([]), { status: 200 });
+      },
     );
     vi.stubGlobal("fetch", fetchSpy);
 

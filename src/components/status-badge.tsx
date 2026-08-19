@@ -1,10 +1,6 @@
 import { cn } from "@/lib/utils";
 import { STATUS_LABEL } from "@/lib/format";
-import type {
-  ExceptionStatus,
-  IntegrationState,
-  RunStatus,
-} from "@/lib/product-api";
+import type { ExceptionStatus, IntegrationState, RunStatus } from "@/lib/product-api";
 
 const base =
   "inline-flex items-center gap-1.5 rounded-sm border px-1.5 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wide";

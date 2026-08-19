@@ -74,8 +74,7 @@ function ReconcilePage() {
   const startedAt = useRef<number>(0);
 
   const runs = useQuery({ queryKey: ["runs"], queryFn: () => api.listRuns() });
-  const isFirstRun =
-    (runs.data ?? []).filter((r) => r.status === "completed").length === 0;
+  const isFirstRun = (runs.data ?? []).filter((r) => r.status === "completed").length === 0;
 
   const [periodLabel, setPeriodLabel] = useState("");
   const [fieldActivityFile, setFieldActivityFile] = useState<File | null>(null);
@@ -89,8 +88,9 @@ function ReconcilePage() {
       getAnalytics().track("core_workflow_started", {
         accountId: session.data?.accountId ?? null,
         workflow: "reconciliation",
-        sourceCount: [input.fieldActivityFile, input.invoicesFile, input.paymentsFile]
-          .filter(Boolean).length,
+        sourceCount: [input.fieldActivityFile, input.invoicesFile, input.paymentsFile].filter(
+          Boolean,
+        ).length,
         isSampleAccount: session.data?.isSampleAccount ?? null,
       });
       return api.startRun(input);
@@ -200,8 +200,8 @@ function ReconcilePage() {
           {completedRun ? (
             <SuccessNote>
               <p className="font-semibold">
-                {completedRun.label} completed — {completedRun.exceptionCount} exceptions
-                across {completedRun.jobsAnalyzed.toLocaleString("en-US")} jobs.
+                {completedRun.label} completed — {completedRun.exceptionCount} exceptions across{" "}
+                {completedRun.jobsAnalyzed.toLocaleString("en-US")} jobs.
               </p>
               <div className="mt-3 flex gap-2">
                 <Button size="sm" onClick={() => void navigate({ to: "/dashboard" })}>
@@ -219,16 +219,15 @@ function ReconcilePage() {
             <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
               <li>Files are sent to the RouteLeak backend and normalized there.</li>
               <li>
-                Matching, confidence scoring and exception categories are produced by the
-                backend engine — this interface does not compute them.
+                Matching, confidence scoring and exception categories are produced by the backend
+                engine — this interface does not compute them.
               </li>
               <li>
-                Evidence lineage is retained with the run so each finding can be defended
-                later.
+                Evidence lineage is retained with the run so each finding can be defended later.
               </li>
               <li>
-                Analytics record only counts and timings. No file contents, invoice lines
-                or customer names leave the product.
+                Analytics record only counts and timings. No file contents, invoice lines or
+                customer names leave the product.
               </li>
             </ul>
           </div>

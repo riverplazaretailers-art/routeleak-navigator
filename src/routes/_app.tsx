@@ -2,6 +2,8 @@ import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-rout
 import { useEffect } from "react";
 
 import { AppShell } from "@/components/app-shell";
+import { ModeNotice, SignInCta } from "@/components/launch-cta";
+import { getLaunchConfig } from "@/lib/launch-config";
 import { ErrorState, LoadingBlock } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/hooks/use-session";
@@ -11,6 +13,22 @@ export const Route = createFileRoute("/_app")({
 });
 
 function AppLayout() {
+  const { capabilities } = getLaunchConfig();
+  if (!capabilities.inAppAuth) return <WorkspaceUnavailable />;
+  return <AuthenticatedLayout />;
+}
+
+function WorkspaceUnavailable() {
+  return (
+    <div className="mx-auto max-w-3xl space-y-4 px-4 py-10">
+      <h1 className="text-sm font-semibold">This workspace is not served here</h1>
+      <ModeNotice />
+      <SignInCta variant="default" />
+    </div>
+  );
+}
+
+function AuthenticatedLayout() {
   const session = useSession();
   const navigate = useNavigate();
   const user = session.data;

@@ -1,11 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import {
-  ANALYTICS_EVENTS,
-  createAnalytics,
-  sanitize,
-  type AnalyticsProvider,
-} from "./analytics";
+import { ANALYTICS_EVENTS, createAnalytics, sanitize, type AnalyticsProvider } from "./analytics";
 
 function recorder() {
   const events: { event: string; props: Record<string, unknown> }[] = [];

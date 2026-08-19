@@ -4,9 +4,7 @@ import { createHttpProductApi } from "./http";
 
 type Call = { url: string; init: RequestInit };
 
-function mockFetch(
-  handler: (call: Call) => { status?: number; body?: unknown } | Promise<never>,
-) {
+function mockFetch(handler: (call: Call) => { status?: number; body?: unknown } | Promise<never>) {
   const calls: Call[] = [];
   const fn = vi.fn(async (url: unknown, init: unknown) => {
     const call = { url: String(url), init: (init ?? {}) as RequestInit };
@@ -135,9 +133,7 @@ describe("http adapter", () => {
       note: "collected",
     });
 
-    expect(calls[0]!.url).toBe(
-      "https://api.routeleak.example/v1/exceptions/exc-1/status",
-    );
+    expect(calls[0]!.url).toBe("https://api.routeleak.example/v1/exceptions/exc-1/status");
     expect(JSON.parse(calls[0]!.init.body as string)).toEqual({
       status: "recovered",
       note: "collected",

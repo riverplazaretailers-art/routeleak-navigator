@@ -209,9 +209,7 @@ function ExceptionDetailPage() {
                   <p className="text-muted-foreground">
                     {event.actor} · {dateTime(event.at)}
                   </p>
-                  {event.note ? (
-                    <p className="mt-0.5 text-muted-foreground">{event.note}</p>
-                  ) : null}
+                  {event.note ? <p className="mt-0.5 text-muted-foreground">{event.note}</p> : null}
                 </li>
               ))}
             </ul>

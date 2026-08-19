@@ -125,9 +125,7 @@ function SettingsPage() {
                 min={0}
                 step={100}
                 value={draft.minimumRecoverableAmount}
-                onChange={(e) =>
-                  set("minimumRecoverableAmount", Number(e.target.value) || 0)
-                }
+                onChange={(e) => set("minimumRecoverableAmount", Number(e.target.value) || 0)}
               />
               <p className="text-xs text-muted-foreground">
                 Exceptions below this value are suppressed by the backend.

@@ -1,7 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
+import { ModeNotice, SignInCta, StartCta } from "@/components/launch-cta";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { getLaunchConfig } from "@/lib/launch-config";
 import { ErrorState } from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +33,34 @@ export const Route = createFileRoute("/sign-in")({
 });
 
 function SignInPage() {
+  const { capabilities } = getLaunchConfig();
+  if (!capabilities.inAppAuth) return <SignInHandoff />;
+  return <SignInForm />;
+}
+
+function SignInHandoff() {
+  return (
+    <div className="min-h-screen bg-background">
+      <SiteHeader />
+      <div className="mx-auto max-w-md px-4 py-14">
+        <h1 className="text-xl font-semibold">Sign in</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          RouteLeak accounts are authenticated by the preserved RouteLeak backend, not by this site.
+        </p>
+        <div className="mt-5 space-y-4">
+          <ModeNotice />
+          <div className="flex flex-wrap gap-2">
+            <SignInCta variant="default" />
+            <StartCta label="Request a pilot analysis" variant="outline" />
+          </div>
+        </div>
+      </div>
+      <SiteFooter />
+    </div>
+  );
+}
+
+function SignInForm() {
   const api = getProductApi();
   const navigate = useNavigate();
   const session = useSession();
@@ -58,8 +88,7 @@ function SignInPage() {
       <div className="mx-auto max-w-md px-4 py-14">
         <h1 className="text-xl font-semibold">Sign in</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Access your RouteLeak workspace. Authentication is handled by the RouteLeak
-          backend.
+          Access your RouteLeak workspace. Authentication is handled by the RouteLeak backend.
         </p>
 
         {api.isDemo ? (

@@ -19,13 +19,27 @@ export function ExceptionTable({
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="border-b border-border bg-secondary/60 text-left">
-            <th scope="col" className="label-caps px-3 py-2 font-semibold">Work order</th>
-            <th scope="col" className="label-caps px-3 py-2 font-semibold">Customer</th>
-            <th scope="col" className="label-caps px-3 py-2 font-semibold">Finding</th>
-            <th scope="col" className="label-caps px-3 py-2 font-semibold">Completed</th>
-            <th scope="col" className="label-caps px-3 py-2 text-right font-semibold">Confidence</th>
-            <th scope="col" className="label-caps px-3 py-2 text-right font-semibold">Recoverable</th>
-            <th scope="col" className="label-caps px-3 py-2 font-semibold">Status</th>
+            <th scope="col" className="label-caps px-3 py-2 font-semibold">
+              Work order
+            </th>
+            <th scope="col" className="label-caps px-3 py-2 font-semibold">
+              Customer
+            </th>
+            <th scope="col" className="label-caps px-3 py-2 font-semibold">
+              Finding
+            </th>
+            <th scope="col" className="label-caps px-3 py-2 font-semibold">
+              Completed
+            </th>
+            <th scope="col" className="label-caps px-3 py-2 text-right font-semibold">
+              Confidence
+            </th>
+            <th scope="col" className="label-caps px-3 py-2 text-right font-semibold">
+              Recoverable
+            </th>
+            <th scope="col" className="label-caps px-3 py-2 font-semibold">
+              Status
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-border">

@@ -16,13 +16,7 @@ const NAV = [
   { to: "/help", label: "Help" },
 ] as const;
 
-export function AppShell({
-  user,
-  children,
-}: {
-  user: SessionUser;
-  children: ReactNode;
-}) {
+export function AppShell({ user, children }: { user: SessionUser; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const signOut = useSignOut();
   const navigate = useNavigate();

@@ -32,15 +32,7 @@ export const Route = createFileRoute("/_app/dashboard")({
   component: DashboardPage,
 });
 
-function Metric({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint?: string;
-}) {
+function Metric({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div className="panel p-4">
       <p className="label-caps">{label}</p>
@@ -125,10 +117,7 @@ function DashboardPage() {
       <section className="mt-8">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm font-semibold">Unresolved exceptions by value</h2>
-          <Link
-            to="/history"
-            className="text-sm text-primary underline-offset-2 hover:underline"
-          >
+          <Link to="/history" className="text-sm text-primary underline-offset-2 hover:underline">
             All runs
           </Link>
         </div>

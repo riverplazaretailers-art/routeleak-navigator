@@ -52,12 +52,9 @@ function requireSession(): SessionUser {
 
 function summarize(s: DemoState): EconomicSummary {
   const current = s.exceptions;
-  const count = (status: ExceptionStatus) =>
-    current.filter((e) => e.status === status).length;
+  const count = (status: ExceptionStatus) => current.filter((e) => e.status === status).length;
   const total = (status: ExceptionStatus) =>
-    current
-      .filter((e) => e.status === status)
-      .reduce((sum, e) => sum + e.recoverableAmount, 0);
+    current.filter((e) => e.status === status).reduce((sum, e) => sum + e.recoverableAmount, 0);
 
   return {
     periodLabel: "July 2026",
@@ -178,8 +175,7 @@ export function createDemoProductApi(): ProductApi {
         const q = query.search.toLowerCase();
         list = list.filter(
           (e) =>
-            e.workOrderRef.toLowerCase().includes(q) ||
-            e.customerName.toLowerCase().includes(q),
+            e.workOrderRef.toLowerCase().includes(q) || e.customerName.toLowerCase().includes(q),
         );
       }
       return list.sort((a, b) => b.recoverableAmount - a.recoverableAmount);
@@ -197,10 +193,7 @@ export function createDemoProductApi(): ProductApi {
     async updateExceptionStatus({ exceptionId, status, note }) {
       const session = requireSession();
       if (!session.permissions.includes("exceptions:update")) {
-        throw new ProductApiError(
-          "forbidden",
-          "Your role cannot change exception status.",
-        );
+        throw new ProductApiError("forbidden", "Your role cannot change exception status.");
       }
       await delay(300);
       const s = store();
@@ -208,11 +201,7 @@ export function createDemoProductApi(): ProductApi {
       if (index === -1) throw new ProductApiError("not_found", "Exception not found.");
       const current = s.exceptions[index]!;
       const updated = { ...current, status };
-      s.exceptions = [
-        ...s.exceptions.slice(0, index),
-        updated,
-        ...s.exceptions.slice(index + 1),
-      ];
+      s.exceptions = [...s.exceptions.slice(0, index), updated, ...s.exceptions.slice(index + 1)];
       const detail = detailFor(updated, s, "USD");
       const existing = s.details[exceptionId];
       const audit = [

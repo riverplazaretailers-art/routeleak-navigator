@@ -8,10 +8,7 @@
  */
 import { ProductApiError, type ProductApi } from "./types";
 
-export function createUnavailableProductApi(
-  adapterLabel: string,
-  message: string,
-): ProductApi {
+export function createUnavailableProductApi(adapterLabel: string, message: string): ProductApi {
   const fail = async (): Promise<never> => {
     throw new ProductApiError("server", message);
   };

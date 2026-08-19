@@ -52,8 +52,7 @@ const STATIC_SOURCES = [
   {
     name: "Field service management connectors",
     state: "planned" as const,
-    description:
-      "Direct FSM sync does not exist yet and is not claimed as live.",
+    description: "Direct FSM sync does not exist yet and is not claimed as live.",
   },
 ];
 
@@ -71,15 +70,13 @@ function IntegrationsPage() {
       <SiteHeader />
       <div className="mx-auto max-w-4xl px-4 py-12">
         <p className="label-caps">Data sources</p>
-        <h1 className="mt-2 text-2xl font-bold sm:text-3xl">
-          What RouteLeak can read today
-        </h1>
+        <h1 className="mt-2 text-2xl font-bold sm:text-3xl">What RouteLeak can read today</h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-          Integration status comes from the RouteLeak backend configuration, not from
-          marketing copy. <strong className="font-semibold">Live</strong> means it works
-          in production. <strong className="font-semibold">Pilot</strong> means it works
-          for named accounts under supervision.{" "}
-          <strong className="font-semibold">Planned</strong> means it does not exist yet.
+          Integration status comes from the RouteLeak backend configuration, not from marketing
+          copy. <strong className="font-semibold">Live</strong> means it works in production.{" "}
+          <strong className="font-semibold">Pilot</strong> means it works for named accounts under
+          supervision. <strong className="font-semibold">Planned</strong> means it does not exist
+          yet.
         </p>
 
         <div className="mt-8">
@@ -94,16 +91,14 @@ function IntegrationsPage() {
                         <h2 className="text-sm font-semibold">{source.name}</h2>
                         <IntegrationStateBadge state={source.state} />
                       </div>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {source.description}
-                      </p>
+                      <p className="mt-1 text-sm text-muted-foreground">{source.description}</p>
                     </div>
                   </li>
                 ))}
               </ul>
               <p className="text-xs text-muted-foreground">
-                Status shown from the preserved backend&apos;s published capability list.
-                Connectors stay Planned until they are working and tested.
+                Status shown from the preserved backend&apos;s published capability list. Connectors
+                stay Planned until they are working and tested.
               </p>
             </div>
           ) : query.isPending ? (
@@ -119,9 +114,7 @@ function IntegrationsPage() {
                       <h2 className="text-sm font-semibold">{integration.name}</h2>
                       <IntegrationStateBadge state={integration.state} />
                     </div>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {integration.description}
-                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">{integration.description}</p>
                   </div>
                   <span className="label-caps self-start">
                     {CATEGORY_LABEL[integration.category]}
@@ -140,9 +133,9 @@ function IntegrationsPage() {
         <div className="panel mt-8 p-5">
           <h2 className="text-sm font-semibold">Need a connector we don't have?</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Most pilots start with exports from the systems you already use, which avoids
-            any change to dispatch. Tell us what you run and we'll say plainly whether a
-            direct connector is realistic.
+            Most pilots start with exports from the systems you already use, which avoids any change
+            to dispatch. Tell us what you run and we'll say plainly whether a direct connector is
+            realistic.
           </p>
           <div className="mt-4">
             <StartCta />

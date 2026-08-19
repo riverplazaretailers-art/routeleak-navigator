@@ -80,9 +80,9 @@ function Landing() {
               Some of the work your crews finished last month was never invoiced.
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-foreground">
-              RouteLeak reconciles completed field activity against your invoices and
-              payments, then hands your controller a ranked list of the jobs that were
-              missed, underbilled or never collected — with the evidence attached.
+              RouteLeak reconciles completed field activity against your invoices and payments, then
+              hands your controller a ranked list of the jobs that were missed, underbilled or never
+              collected — with the evidence attached.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <StartCta />
@@ -92,52 +92,52 @@ function Landing() {
               <ModeNotice />
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              Built for the owner, controller or service manager who signs off on
-              billing. No dispatch change required.
+              Built for the owner, controller or service manager who signs off on billing. No
+              dispatch change required.
             </p>
           </div>
 
           {capabilities.liveAnalysis ? null : (
-          <div className="panel self-start">
-            <div className="flex items-center justify-between border-b border-border px-4 py-2">
-              <span className="label-caps">Illustrative exception queue</span>
-              <span className="text-[0.6875rem] text-muted-foreground">Sample data</span>
-            </div>
-            <table className="w-full text-sm">
-              <caption className="sr-only">
-                Illustrative example of a RouteLeak exception queue
-              </caption>
-              <thead>
-                <tr className="border-b border-border text-left">
-                  <th scope="col" className="px-4 py-2 label-caps font-semibold">
-                    Work order
-                  </th>
-                  <th scope="col" className="px-4 py-2 label-caps font-semibold">
-                    Finding
-                  </th>
-                  <th scope="col" className="px-4 py-2 text-right label-caps font-semibold">
-                    Recoverable
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {[
-                  ["WO-48120", "Never invoiced", "$6,120"],
-                  ["WO-48244", "Underbilled labour", "$3,884"],
-                  ["WO-48301", "Invoiced, not collected", "$2,750"],
-                ].map(([ref, finding, amount]) => (
-                  <tr key={ref}>
-                    <td className="num px-4 py-2">{ref}</td>
-                    <td className="px-4 py-2 text-muted-foreground">{finding}</td>
-                    <td className="num px-4 py-2 text-right font-semibold">{amount}</td>
+            <div className="panel self-start">
+              <div className="flex items-center justify-between border-b border-border px-4 py-2">
+                <span className="label-caps">Illustrative exception queue</span>
+                <span className="text-[0.6875rem] text-muted-foreground">Sample data</span>
+              </div>
+              <table className="w-full text-sm">
+                <caption className="sr-only">
+                  Illustrative example of a RouteLeak exception queue
+                </caption>
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    <th scope="col" className="px-4 py-2 label-caps font-semibold">
+                      Work order
+                    </th>
+                    <th scope="col" className="px-4 py-2 label-caps font-semibold">
+                      Finding
+                    </th>
+                    <th scope="col" className="px-4 py-2 text-right label-caps font-semibold">
+                      Recoverable
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <p className="border-t border-border px-4 py-2 text-xs text-muted-foreground">
-              Illustrative figures for demonstration. Not customer results.
-            </p>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {[
+                    ["WO-48120", "Never invoiced", "$6,120"],
+                    ["WO-48244", "Underbilled labour", "$3,884"],
+                    ["WO-48301", "Invoiced, not collected", "$2,750"],
+                  ].map(([ref, finding, amount]) => (
+                    <tr key={ref}>
+                      <td className="num px-4 py-2">{ref}</td>
+                      <td className="px-4 py-2 text-muted-foreground">{finding}</td>
+                      <td className="num px-4 py-2 text-right font-semibold">{amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="border-t border-border px-4 py-2 text-xs text-muted-foreground">
+                Illustrative figures for demonstration. Not customer results.
+              </p>
+            </div>
           )}
         </div>
       </section>
@@ -179,9 +179,9 @@ function Landing() {
           <div>
             <h2 className="text-xl font-semibold">Evidence, not assertions</h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              Every exception carries the field record, the billing comparison and the
-              match attempts that produced it. Your controller can defend each item to a
-              customer, and every status change is recorded in an audit trail.
+              Every exception carries the field record, the billing comparison and the match
+              attempts that produced it. Your controller can defend each item to a customer, and
+              every status change is recorded in an audit trail.
             </p>
             <ul className="mt-4 space-y-2 text-sm">
               {[
@@ -200,8 +200,8 @@ function Landing() {
           <div className="panel p-5">
             <p className="label-caps">Honest status</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              CSV upload is live today. Direct accounting and field-service connectors are
-              planned and labeled as such — we don't claim an integration until it works.
+              CSV upload is live today. Direct accounting and field-service connectors are planned
+              and labeled as such — we don't claim an integration until it works.
             </p>
             <div className="mt-4 flex gap-2">
               <Button asChild size="sm" variant="outline">

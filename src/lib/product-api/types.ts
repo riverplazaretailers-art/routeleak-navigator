@@ -24,10 +24,7 @@ export interface SessionUser {
 export type ExceptionStatus = "open" | "needs_review" | "recovered" | "dismissed";
 
 export type ExceptionCategory =
-  | "not_invoiced"
-  | "underbilled"
-  | "invoiced_not_collected"
-  | "duplicate_visit";
+  "not_invoiced" | "underbilled" | "invoiced_not_collected" | "duplicate_visit";
 
 export interface ExceptionSummary {
   id: string;
@@ -46,12 +43,7 @@ export interface ExceptionSummary {
   reason: string;
 }
 
-export type EvidenceKind =
-  | "field_record"
-  | "invoice"
-  | "payment"
-  | "contract"
-  | "audit";
+export type EvidenceKind = "field_record" | "invoice" | "payment" | "contract" | "audit";
 
 export interface EvidenceItem {
   id: string;
@@ -147,12 +139,7 @@ export interface Plan {
 }
 
 export type PaymentState = "none" | "current" | "past_due" | "failed";
-export type SubscriptionState =
-  | "none"
-  | "trial"
-  | "pilot"
-  | "active"
-  | "canceled";
+export type SubscriptionState = "none" | "trial" | "pilot" | "active" | "canceled";
 
 export interface BillingState {
   accountId: string;
@@ -205,23 +192,13 @@ export interface ExportResult {
 }
 
 export type ProductApiErrorCode =
-  | "unauthorized"
-  | "forbidden"
-  | "not_found"
-  | "invalid_input"
-  | "conflict"
-  | "network"
-  | "server";
+  "unauthorized" | "forbidden" | "not_found" | "invalid_input" | "conflict" | "network" | "server";
 
 export class ProductApiError extends Error {
   code: ProductApiErrorCode;
   status?: number | undefined;
 
-  constructor(
-    code: ProductApiErrorCode,
-    message: string,
-    status?: number | undefined,
-  ) {
+  constructor(code: ProductApiErrorCode, message: string, status?: number | undefined) {
     super(message);
     this.name = "ProductApiError";
     this.code = code;

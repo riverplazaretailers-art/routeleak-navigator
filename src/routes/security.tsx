@@ -66,9 +66,8 @@ function SecurityPage() {
           You're handing us billing data. Here's how it's treated.
         </h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          This page describes current, implemented behaviour. Where a control is planned
-          rather than in place, we say so instead of implying a certification we don't
-          hold.
+          This page describes current, implemented behaviour. Where a control is planned rather than
+          in place, we say so instead of implying a certification we don't hold.
         </p>
 
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -82,8 +81,8 @@ function SecurityPage() {
 
         <p className="mt-6 text-xs text-muted-foreground">
           RouteLeak does not currently claim SOC 2 or ISO 27001 certification. If a formal
-          attestation is required for your procurement process, ask and we'll tell you
-          exactly where we stand.
+          attestation is required for your procurement process, ask and we'll tell you exactly where
+          we stand.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">

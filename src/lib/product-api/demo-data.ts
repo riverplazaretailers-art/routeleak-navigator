@@ -28,12 +28,7 @@ export const DEMO_SESSION: SessionUser = {
   accountId: "demo-account",
   accountName: "Sample Field Co (demo)",
   isSampleAccount: true,
-  permissions: [
-    "exceptions:read",
-    "exceptions:update",
-    "runs:create",
-    "billing:read",
-  ],
+  permissions: ["exceptions:read", "exceptions:update", "runs:create", "billing:read"],
 };
 
 export interface DemoState {
@@ -284,8 +279,7 @@ export const DEMO_PLANS: Plan[] = [
     name: "Operating",
     priceCopy: null,
     cadenceCopy: "Monthly, scoped to technician count",
-    summary:
-      "Recurring reconciliation for teams that want leakage caught every billing cycle.",
+    summary: "Recurring reconciliation for teams that want leakage caught every billing cycle.",
     features: [
       "Monthly or per-cycle reconciliation runs",
       "Exception queue with recovered / dismissed / needs review states",
@@ -335,8 +329,7 @@ export function detailFor(
         label: `Completed work order ${summary.workOrderRef}`,
         source: "field_activity_july.csv",
         capturedAt: summary.completedAt,
-        summary:
-          "Backend-provided field record for this work order, retained with the run.",
+        summary: "Backend-provided field record for this work order, retained with the run.",
         reference: `evidence/demo/${summary.workOrderRef}/field-record`,
       },
       {

@@ -3,7 +3,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 import { PageHeader } from "@/components/app-shell";
-import { EmptyState, ErrorState, LoadingRows, PermissionDenied, SuccessNote } from "@/components/states";
+import {
+  EmptyState,
+  ErrorState,
+  LoadingRows,
+  PermissionDenied,
+  SuccessNote,
+} from "@/components/states";
 import { Button } from "@/components/ui/button";
 import { can, useSession } from "@/hooks/use-session";
 import { dateTime } from "@/lib/format";
@@ -68,7 +74,11 @@ function AdminPage() {
         description="Jobs that stopped before producing results. Fix the source export, then retry — nothing partial is presented as a finding."
       />
 
-      {note ? <div className="mb-4"><SuccessNote>{note}</SuccessNote></div> : null}
+      {note ? (
+        <div className="mb-4">
+          <SuccessNote>{note}</SuccessNote>
+        </div>
+      ) : null}
 
       {failures.isPending ? (
         <LoadingRows rows={3} label="Loading job failures" />
@@ -85,11 +95,21 @@ function AdminPage() {
             <caption className="sr-only">Failed RouteLeak jobs</caption>
             <thead>
               <tr className="border-b border-border bg-secondary/60 text-left">
-                <th scope="col" className="label-caps px-3 py-2 font-semibold">Occurred</th>
-                <th scope="col" className="label-caps px-3 py-2 font-semibold">Run</th>
-                <th scope="col" className="label-caps px-3 py-2 font-semibold">Stage</th>
-                <th scope="col" className="label-caps px-3 py-2 font-semibold">Message</th>
-                <th scope="col" className="label-caps px-3 py-2 text-right font-semibold">Action</th>
+                <th scope="col" className="label-caps px-3 py-2 font-semibold">
+                  Occurred
+                </th>
+                <th scope="col" className="label-caps px-3 py-2 font-semibold">
+                  Run
+                </th>
+                <th scope="col" className="label-caps px-3 py-2 font-semibold">
+                  Stage
+                </th>
+                <th scope="col" className="label-caps px-3 py-2 font-semibold">
+                  Message
+                </th>
+                <th scope="col" className="label-caps px-3 py-2 text-right font-semibold">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">

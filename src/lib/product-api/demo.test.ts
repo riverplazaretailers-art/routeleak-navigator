@@ -25,9 +25,9 @@ describe("demo adapter", () => {
     await expect(
       api.signIn({ email: "controller@sample-fieldco.example", password: "nope" }),
     ).rejects.toMatchObject({ code: "unauthorized" });
-    await expect(api.signIn({ email: "bad", password: "demo" })).rejects.toMatchObject(
-      { code: "invalid_input" },
-    );
+    await expect(api.signIn({ email: "bad", password: "demo" })).rejects.toMatchObject({
+      code: "invalid_input",
+    });
   });
 
   it("guards authenticated reads until sign-in", async () => {

@@ -81,14 +81,10 @@ export function ErrorState({
     return <PermissionDenied message={error.message} />;
   }
 
-  const message =
-    error instanceof Error ? error.message : "An unexpected error occurred.";
+  const message = error instanceof Error ? error.message : "An unexpected error occurred.";
 
   return (
-    <div
-      role="alert"
-      className="panel flex flex-col items-start gap-3 border-destructive/40 p-6"
-    >
+    <div role="alert" className="panel flex flex-col items-start gap-3 border-destructive/40 p-6">
       <AlertTriangle className="size-5 text-destructive" aria-hidden />
       <div>
         <h3 className="text-sm font-semibold">{title}</h3>

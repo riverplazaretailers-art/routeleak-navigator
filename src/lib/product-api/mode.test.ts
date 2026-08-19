@@ -61,13 +61,11 @@ describe("launch mode adapter selection", () => {
   });
 
   it("issues v1 calls only when the full contract is configured", async () => {
-    const fetchSpy = vi.fn(
-      async (url: unknown, _init?: unknown) => {
-        void url;
-        void _init;
-        return new Response(JSON.stringify([]), { status: 200 });
-      },
-    );
+    const fetchSpy = vi.fn(async (url: unknown, _init?: unknown) => {
+      void url;
+      void _init;
+      return new Response(JSON.stringify([]), { status: 200 });
+    });
     vi.stubGlobal("fetch", fetchSpy);
 
     const api = apiFor({
@@ -90,16 +88,10 @@ describe("secure-link CTA targets", () => {
     );
 
     expect(secureWorkspaceLink("/")).toBe("https://app.routeleak.example");
-    expect(secureWorkspaceLink("/api/pilots")).toBe(
-      "https://app.routeleak.example/api/pilots",
-    );
-    expect(secureWorkspaceLink("/api/uploads")).toBe(
-      "https://app.routeleak.example/api/uploads",
-    );
+    expect(secureWorkspaceLink("/api/pilots")).toBe("https://app.routeleak.example/api/pilots");
+    expect(secureWorkspaceLink("/api/uploads")).toBe("https://app.routeleak.example/api/uploads");
     for (const link of ["/", "/api/pilots", "/api/uploads", "/api/operator"]) {
-      expect(secureWorkspaceLink(link)!.startsWith("https://app.routeleak.example")).toBe(
-        true,
-      );
+      expect(secureWorkspaceLink(link)!.startsWith("https://app.routeleak.example")).toBe(true);
     }
   });
 

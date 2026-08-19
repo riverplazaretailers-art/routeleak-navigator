@@ -72,8 +72,7 @@ export function SignInCta({
     return (
       <Button asChild variant={variant} className={className}>
         <a href={href} rel="noopener">
-          {label ?? "Open the secure workspace"}{" "}
-          <ExternalLink className="size-4" aria-hidden />
+          {label ?? "Open the secure workspace"} <ExternalLink className="size-4" aria-hidden />
         </a>
       </Button>
     );
@@ -108,8 +107,7 @@ export function ModeNotice() {
       >
         <ShieldAlert className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         <p>
-          <span className="font-semibold">RouteLeak is not configured.</span>{" "}
-          {configError}
+          <span className="font-semibold">RouteLeak is not configured.</span> {configError}
         </p>
       </div>
     );
@@ -124,8 +122,8 @@ export function ModeNotice() {
         <span className="font-semibold text-foreground">
           Real analysis runs in the secure RouteLeak workspace.
         </span>{" "}
-        This site is the public product UI. Sign-in, uploads and the exception
-        queue are served by the preserved backend at{" "}
+        This site is the public product UI. Sign-in, uploads and the exception queue are served by
+        the preserved backend at{" "}
         <a
           className="text-primary underline-offset-2 hover:underline"
           href={secureWorkspaceUrl}

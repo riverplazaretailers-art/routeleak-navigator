@@ -106,10 +106,7 @@ export function SiteFooter() {
           <ul className="mt-2 space-y-1.5 text-sm">
             {NAV.map((item) => (
               <li key={item.to}>
-                <Link
-                  to={item.to}
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link to={item.to} className="text-muted-foreground hover:text-foreground">
                   {item.label}
                 </Link>
               </li>
@@ -141,10 +138,7 @@ export function SiteFooter() {
                 </li>
                 {getLaunchConfig().capabilities.inAppAuth ? (
                   <li>
-                    <Link
-                      to="/sign-in"
-                      className="text-muted-foreground hover:text-foreground"
-                    >
+                    <Link to="/sign-in" className="text-muted-foreground hover:text-foreground">
                       Sign in
                     </Link>
                   </li>

@@ -102,9 +102,9 @@ function capabilitiesFor(mode: LaunchMode): LaunchCapabilities {
 }
 
 export function resolveLaunchConfig(env: EnvLike): LaunchConfig {
-  const apiBaseUrl = clean(env['VITE_API_BASE_URL']);
-  const apiContractVersion = clean(env['VITE_API_CONTRACT_VERSION']);
-  const secureWorkspaceUrl = clean(env['VITE_SECURE_WORKSPACE_URL']);
+  const apiBaseUrl = clean(env["VITE_API_BASE_URL"]);
+  const apiContractVersion = clean(env["VITE_API_CONTRACT_VERSION"]);
+  const secureWorkspaceUrl = clean(env["VITE_SECURE_WORKSPACE_URL"]);
 
   const build = (mode: LaunchMode, configError: string | null = null): LaunchConfig => ({
     mode,
@@ -136,10 +136,7 @@ export function resolveLaunchConfig(env: EnvLike): LaunchConfig {
       );
     }
     if (!isAbsoluteHttpUrl(apiBaseUrl)) {
-      return build(
-        "misconfigured",
-        "VITE_API_BASE_URL must be an absolute http(s) URL.",
-      );
+      return build("misconfigured", "VITE_API_BASE_URL must be an absolute http(s) URL.");
     }
     if (secureWorkspaceUrl) {
       return build(
@@ -167,9 +164,7 @@ let cached: LaunchConfig | null = null;
 
 export function getLaunchConfig(): LaunchConfig {
   if (cached) return cached;
-  cached = resolveLaunchConfig(
-    import.meta.env as unknown as EnvLike,
-  );
+  cached = resolveLaunchConfig(import.meta.env as unknown as EnvLike);
   return cached;
 }
 

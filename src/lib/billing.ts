@@ -19,10 +19,7 @@ export interface BillingProvider {
   name: string;
   /** Returns a URL to redirect to, or null when the action is handled offline. */
   startCheckout(intent: CheckoutIntent): Promise<{ redirectUrl: string | null }>;
-  cancelSubscription(input: {
-    accountId: string;
-    reason?: string;
-  }): Promise<{ canceled: boolean }>;
+  cancelSubscription(input: { accountId: string; reason?: string }): Promise<{ canceled: boolean }>;
 }
 
 export interface Billing {
@@ -30,10 +27,7 @@ export interface Billing {
   listPlans(): Promise<Plan[]>;
   getState(): Promise<BillingState>;
   startCheckout(intent: CheckoutIntent): Promise<{ redirectUrl: string | null }>;
-  cancelSubscription(input: {
-    accountId: string;
-    reason?: string;
-  }): Promise<{ canceled: boolean }>;
+  cancelSubscription(input: { accountId: string; reason?: string }): Promise<{ canceled: boolean }>;
 }
 
 /**

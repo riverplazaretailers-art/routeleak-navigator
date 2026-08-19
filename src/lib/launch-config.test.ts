@@ -79,8 +79,8 @@ describe("launch config", () => {
   });
 
   it("rejects a non-absolute secure workspace URL", () => {
-    expect(
-      resolveLaunchConfig({ VITE_SECURE_WORKSPACE_URL: "/workspace" }).mode,
-    ).toBe("misconfigured");
+    expect(resolveLaunchConfig({ VITE_SECURE_WORKSPACE_URL: "/workspace" }).mode).toBe(
+      "misconfigured",
+    );
   });
 });

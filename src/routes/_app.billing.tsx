@@ -72,8 +72,7 @@ function BillingPage() {
   });
 
   const cancel = useMutation({
-    mutationFn: () =>
-      billing.cancelSubscription({ accountId: session.data?.accountId ?? "" }),
+    mutationFn: () => billing.cancelSubscription({ accountId: session.data?.accountId ?? "" }),
     onSuccess: () => {
       getAnalytics().track("subscription_cancelled", {
         accountId: session.data?.accountId ?? null,
@@ -137,9 +136,7 @@ function BillingPage() {
                   <span className="text-muted-foreground">{row.label}</span>
                   <span className="num font-medium">
                     {row.used.toLocaleString("en-US")}
-                    {row.included === null
-                      ? ""
-                      : ` / ${row.included.toLocaleString("en-US")}`}
+                    {row.included === null ? "" : ` / ${row.included.toLocaleString("en-US")}`}
                   </span>
                 </li>
               ))}

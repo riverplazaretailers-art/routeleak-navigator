@@ -28,7 +28,5 @@ export function DemoNotice({ compact = false }: { compact?: boolean }) {
 
 export function AdapterTag() {
   const api = getProductApi();
-  return (
-    <span className="label-caps whitespace-nowrap">{api.adapterLabel}</span>
-  );
+  return <span className="label-caps whitespace-nowrap">{api.adapterLabel}</span>;
 }

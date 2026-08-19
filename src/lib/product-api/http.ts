@@ -56,10 +56,7 @@ export function createHttpProductApi(baseUrl: string): ProductApi {
             : null,
       });
     } catch {
-      throw new ProductApiError(
-        "network",
-        "RouteLeak could not reach the analysis service.",
-      );
+      throw new ProductApiError("network", "RouteLeak could not reach the analysis service.");
     }
 
     if (!response.ok) {
@@ -101,15 +98,13 @@ export function createHttpProductApi(baseUrl: string): ProductApi {
         throw error;
       }
     },
-    signIn: (body) =>
-      request<SessionUser>("/v1/session", { method: "POST", body }),
+    signIn: (body) => request<SessionUser>("/v1/session", { method: "POST", body }),
     signOut: () => request<void>("/v1/session", { method: "DELETE" }),
 
     getEconomicSummary: () => request<EconomicSummary>("/v1/summary"),
     listRuns: () => request<Run[]>("/v1/runs"),
     getRun: (runId) => request<Run>(`/v1/runs/${encodeURIComponent(runId)}`),
-    startRun: (input) =>
-      request<Run>("/v1/runs", { method: "POST", formData: runFormData(input) }),
+    startRun: (input) => request<Run>("/v1/runs", { method: "POST", formData: runFormData(input) }),
 
     listExceptions: (query?: ListExceptionsQuery) => {
       const params = new URLSearchParams();
@@ -119,13 +114,12 @@ export function createHttpProductApi(baseUrl: string): ProductApi {
       const qs = params.toString();
       return request<ExceptionSummary[]>(`/v1/exceptions${qs ? `?${qs}` : ""}`);
     },
-    getException: (id) =>
-      request<ExceptionDetail>(`/v1/exceptions/${encodeURIComponent(id)}`),
+    getException: (id) => request<ExceptionDetail>(`/v1/exceptions/${encodeURIComponent(id)}`),
     updateExceptionStatus: ({ exceptionId, status, note }) =>
-      request<ExceptionDetail>(
-        `/v1/exceptions/${encodeURIComponent(exceptionId)}/status`,
-        { method: "POST", body: { status, note } },
-      ),
+      request<ExceptionDetail>(`/v1/exceptions/${encodeURIComponent(exceptionId)}/status`, {
+        method: "POST",
+        body: { status, note },
+      }),
 
     exportRun: (runId) =>
       request<ExportResult>(`/v1/runs/${encodeURIComponent(runId)}/export`, {
@@ -142,14 +136,12 @@ export function createHttpProductApi(baseUrl: string): ProductApi {
       }),
 
     getSettings: () => request<AccountSettings>("/v1/settings"),
-    updateSettings: (body) =>
-      request<AccountSettings>("/v1/settings", { method: "PATCH", body }),
+    updateSettings: (body) => request<AccountSettings>("/v1/settings", { method: "PATCH", body }),
 
     listJobFailures: () => request<JobFailure[]>("/v1/admin/job-failures"),
     retryJob: (failureId) =>
-      request<{ queued: true }>(
-        `/v1/admin/job-failures/${encodeURIComponent(failureId)}/retry`,
-        { method: "POST" },
-      ),
+      request<{ queued: true }>(`/v1/admin/job-failures/${encodeURIComponent(failureId)}/retry`, {
+        method: "POST",
+      }),
   };
 }

@@ -74,9 +74,9 @@ function HowItWorks() {
           From raw exports to a defensible recovery list
         </h1>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-          RouteLeak does not replace your dispatch or accounting system. It reads what
-          they already produce, finds the work that fell between them, and gives your
-          controller a queue they can defend.
+          RouteLeak does not replace your dispatch or accounting system. It reads what they already
+          produce, finds the work that fell between them, and gives your controller a queue they can
+          defend.
         </p>
 
         <ol className="mt-8 divide-y divide-border border-y border-border">

@@ -45,8 +45,7 @@ function SignInHandoff() {
       <div className="mx-auto max-w-md px-4 py-14">
         <h1 className="text-xl font-semibold">Sign in</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          RouteLeak accounts are authenticated by the preserved RouteLeak backend, not by
-          this site.
+          RouteLeak accounts are authenticated by the preserved RouteLeak backend, not by this site.
         </p>
         <div className="mt-5 space-y-4">
           <ModeNotice />
@@ -89,8 +88,7 @@ function SignInForm() {
       <div className="mx-auto max-w-md px-4 py-14">
         <h1 className="text-xl font-semibold">Sign in</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Access your RouteLeak workspace. Authentication is handled by the RouteLeak
-          backend.
+          Access your RouteLeak workspace. Authentication is handled by the RouteLeak backend.
         </p>
 
         {api.isDemo ? (

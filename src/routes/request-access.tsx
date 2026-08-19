@@ -15,7 +15,7 @@ import { getProductApi, type AccessRequest } from "@/lib/product-api";
 
 export const Route = createFileRoute("/request-access")({
   validateSearch: (search: Record<string, unknown>): { plan?: string } =>
-    typeof search['plan'] === "string" ? { plan: search['plan'] } : {},
+    typeof search["plan"] === "string" ? { plan: search["plan"] } : {},
   head: () => ({
     meta: [
       { title: "Request a RouteLeak pilot analysis" },
@@ -71,8 +71,8 @@ function RequestAccessPage() {
         <p className="label-caps">Start here</p>
         <h1 className="mt-2 text-2xl font-bold">Request a pilot analysis</h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          We scope the pilot to a period you have already closed, so the findings are
-          checkable against what you actually billed.
+          We scope the pilot to a period you have already closed, so the findings are checkable
+          against what you actually billed.
           {plan ? ` Requested plan: ${plan}.` : ""}
         </p>
 
@@ -89,8 +89,8 @@ function RequestAccessPage() {
             <SuccessNote>
               <p className="font-semibold">Request received.</p>
               <p className="mt-1 text-muted-foreground">
-                We will reply with the exports we need and a scoped quote. Nothing is
-                charged and no data is required until you agree the scope.
+                We will reply with the exports we need and a scoped quote. Nothing is charged and no
+                data is required until you agree the scope.
               </p>
             </SuccessNote>
             <div className="flex gap-2">
@@ -158,9 +158,7 @@ function RequestAccessPage() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="notes">
-                What systems produce your work orders and invoices?
-              </Label>
+              <Label htmlFor="notes">What systems produce your work orders and invoices?</Label>
               <Textarea
                 id="notes"
                 rows={4}
@@ -177,8 +175,7 @@ function RequestAccessPage() {
               {mutation.isPending ? "Sending…" : "Send request"}
             </Button>
             <p className="text-xs text-muted-foreground">
-              We only use these details to scope the pilot. No data exports are needed
-              yet.
+              We only use these details to scope the pilot. No data exports are needed yet.
             </p>
           </form>
         )}

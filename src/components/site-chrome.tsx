@@ -3,6 +3,8 @@ import { Menu } from "lucide-react";
 import { useState } from "react";
 
 import { DemoNotice } from "@/components/demo-notice";
+import { SignInCta, StartCta } from "@/components/launch-cta";
+import { getLaunchConfig, secureWorkspaceLink } from "@/lib/launch-config";
 import { Button } from "@/components/ui/button";
 
 const NAV = [
@@ -42,12 +44,10 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex items-center gap-2 md:ml-0">
-            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-              <Link to="/sign-in">Sign in</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link to="/request-access">Request a pilot analysis</Link>
-            </Button>
+            <span className="hidden sm:inline-flex">
+              <SignInCta variant="ghost" />
+            </span>
+            <StartCta />
             <Button
               variant="outline"
               size="icon"
@@ -64,7 +64,12 @@ export function SiteHeader() {
         {open ? (
           <nav aria-label="Main (mobile)" className="border-t border-border md:hidden">
             <ul className="mx-auto max-w-6xl px-4 py-2">
-              {[...NAV, { to: "/sign-in", label: "Sign in" } as const].map((item) => (
+              {[
+                ...NAV,
+                ...(getLaunchConfig().capabilities.inAppAuth
+                  ? ([{ to: "/sign-in", label: "Sign in" }] as const)
+                  : []),
+              ].map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
@@ -114,19 +119,38 @@ export function SiteFooter() {
         <div>
           <p className="label-caps">Get started</p>
           <ul className="mt-2 space-y-1.5 text-sm">
-            <li>
-              <Link
-                to="/request-access"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Request a pilot analysis
-              </Link>
-            </li>
-            <li>
-              <Link to="/sign-in" className="text-muted-foreground hover:text-foreground">
-                Sign in
-              </Link>
-            </li>
+            {secureWorkspaceLink("/") ? (
+              <li>
+                <a
+                  href={secureWorkspaceLink("/")!}
+                  rel="noopener"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Secure workspace
+                </a>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    to="/request-access"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Request a pilot analysis
+                  </Link>
+                </li>
+                {getLaunchConfig().capabilities.inAppAuth ? (
+                  <li>
+                    <Link
+                      to="/sign-in"
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      Sign in
+                    </Link>
+                  </li>
+                ) : null}
+              </>
+            )}
             <li>
               <Link to="/help" className="text-muted-foreground hover:text-foreground">
                 Help

@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, FileSpreadsheet, ListChecks, Search } from "lucide-react";
 
+import { SignInCta, ModeNotice, StartCta } from "@/components/launch-cta";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { getLaunchConfig } from "@/lib/launch-config";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -65,6 +67,7 @@ const STEPS = [
 ];
 
 function Landing() {
+  const { capabilities } = getLaunchConfig();
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -82,14 +85,11 @@ function Landing() {
               missed, underbilled or never collected — with the evidence attached.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link to="/request-access">
-                  Request a pilot analysis <ArrowRight className="size-4" aria-hidden />
-                </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link to="/sign-in">See the sample account</Link>
-              </Button>
+              <StartCta />
+              <SignInCta />
+            </div>
+            <div className="mt-4 max-w-xl">
+              <ModeNotice />
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               Built for the owner, controller or service manager who signs off on
